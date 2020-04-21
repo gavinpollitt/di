@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public final class GameContext {
 	
 	private final DiceProvider provider;
 	
 	private final List<Die> dice;
 	
+	@Inject
 	public GameContext(final DiceProvider provider, final int dice) {
 		this.provider = provider;
 		this.dice = new ArrayList<>(dice);
