@@ -18,6 +18,7 @@ public class Game {
 	}
 	
 	public String play() {
+		System.out.println(this.context);
 		List<Die> dice = this.context.getDice();
 		
 		List<Integer> p1Result = dice.stream().map(Die::roll).collect(Collectors.toList());

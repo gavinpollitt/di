@@ -19,4 +19,8 @@ public class DiceProvider implements Provider<Die> {
 		// TODO Auto-generated method stub
 		return new Die(this.sides);
 	}
+	
+	public int getSides() {
+		return this.sides;
+	}
 }

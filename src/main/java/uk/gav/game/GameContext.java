@@ -28,4 +28,9 @@ public final class GameContext {
 		return this.dice;
 	}
 	
+	public String toString() {
+		String pl = this.dice.size() > 1?"dice":"die";
+		return "Playing with " + this.dice.size() + " x " + this.provider.getSides() + " sided " + pl;
+	}
+	
 }

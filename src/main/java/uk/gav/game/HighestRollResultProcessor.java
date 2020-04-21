@@ -2,6 +2,9 @@ package uk.gav.game;
 
 import java.util.List;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class HighestRollResultProcessor implements GameResultProcessor {
 
 	@Override
