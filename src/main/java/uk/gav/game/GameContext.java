@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import uk.gav.game.annotation.Dice;
+
 @Singleton
 public final class GameContext {
 	
@@ -15,7 +17,7 @@ public final class GameContext {
 	private final List<Die> dice;
 	
 	@Inject
-	public GameContext(final DiceProvider provider, final int dice) {
+	public GameContext(final DiceProvider provider, final @Dice int dice) {
 		this.provider = provider;
 		this.dice = new ArrayList<>(dice);
 		

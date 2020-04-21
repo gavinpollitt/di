@@ -3,12 +3,14 @@ package uk.gav.game;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import uk.gav.game.annotation.Sides;
+
 public class DiceProvider implements Provider<Die> {
 	
 	private final int sides;
 	
 	@Inject
-	public DiceProvider(final int sides) {
+	public DiceProvider(@Sides final Integer sides) {
 		this.sides = sides;
 	}
 
@@ -17,5 +19,4 @@ public class DiceProvider implements Provider<Die> {
 		// TODO Auto-generated method stub
 		return new Die(this.sides);
 	}
-
 }
