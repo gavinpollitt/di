@@ -21,7 +21,7 @@ public final class GameContext {
 		this.provider = provider;
 		this.dice = new ArrayList<>(dice);
 		
-		IntStream.range(0, dice - 1).forEach(i -> this.dice.add(this.provider.get()));
+		IntStream.range(0, dice).forEach(i -> this.dice.add(this.provider.get()));
 	}
 	
 	public List<Die> getDice() {
