@@ -39,7 +39,7 @@ public class TestDiceProvider implements DiceProvider {
 
 	@Override
 	public Die get() {
-		return new DieControlled(this.sides);
+		return new DieControlled();
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package uk.gav.guice;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import uk.gav.game.Game;
+import uk.gav.game.impl.Game;
 
 public class App 
 {

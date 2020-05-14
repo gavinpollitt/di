@@ -1,4 +1,4 @@
-package uk.gav.game;
+package uk.gav.game.impl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,6 +7,14 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 
+import uk.gav.game.GameResultProcessor;
+
+/**
+ * 
+ * @author regen
+ *
+ * Singleton processor that will return the results of a single 'double-up' games round.
+ */
 @Singleton
 public class DoubleUpResultProcessor implements GameResultProcessor {
 
@@ -16,7 +24,11 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 		System.out.println(total(checkDoubles(check)));
 		System.out.println(reportDoubles(checkDoubles(check)));
 	}
-	
+
+	/**
+	 * Based on the numbers rolled, the total result is calculated as:
+	 * 		Total for each distinct number rolled -> number of times rolled * face value * number of times rolled
+	 */
 	@Override
 	public String processResult(final List<Integer> player1, final List<Integer> player2) {
 		System.out.println("Doubles count double and so on");
@@ -40,23 +52,28 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param p the integers representing the rolls on the dice
+	 * @return The map of r -> c   where r is the number rolled and c is the number of times rolled.
+	 */
 	private static Map<Integer,Integer> checkDoubles(final List<Integer> p) {
 		Map<Integer,Integer> out = new HashMap<>();
 		
 		for (Integer i: p) {
 			Integer cnt = out.get(i);
 			
-			if (cnt == null) {
-				out.put(i, 1);
-			}
-			else {
-				out.put(i, cnt+1);
-			}
+			out.put(i, cnt==null?1:cnt+1);
 		}
 		
 		return out;
 	}
 	
+	/**
+	 * 
+	 * @param dbs The map of r -> c   where r is the number rolled and c is the number of times rolled.
+	 * @return The total score for this role.
+	 */
 	private static int total(final Map<Integer,Integer> dbs) {
 		int tot = 0;
 		for (Integer r: dbs.keySet()) {
@@ -67,6 +84,11 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 		return tot;
 	}
 	
+	/**
+	 * 
+	 * @param dbs The map of r -> c   where r is the number rolled and c is the number of times rolled.
+	 * @return The prinatable version of the result.
+	 */
 	private static String reportDoubles(final Map<Integer,Integer> dbs) {
 		String out = "rolled ";
 		

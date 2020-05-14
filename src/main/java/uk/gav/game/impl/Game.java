@@ -1,10 +1,19 @@
-package uk.gav.game;
+package uk.gav.game.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import uk.gav.game.Die;
+import uk.gav.game.GameResultProcessor;
+
+/**
+ * 
+ * @author regen
+ *
+ * A single iteration of the current 'game of dice'. The type of game will be determined by the injected classes
+ */
 public class Game {
 	
 	private final GameContext context;

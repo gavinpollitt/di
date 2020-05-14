@@ -1,4 +1,4 @@
-package uk.gav.game;
+package uk.gav.game.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import uk.gav.game.DiceProvider;
+import uk.gav.game.Die;
 import uk.gav.game.annotation.Dice;
 
 @Singleton

@@ -1,13 +1,11 @@
 package uk.gav.game;
 
-public class Die {
-	private final int sides;
-	
-	public Die(final Integer sides) {
-		this.sides = sides;		
-	}
-	
-	public int roll() {
-		return (int)(Math.random()*this.sides) + 1;
-	}
+/**
+ * 
+ * @author regen
+ *
+ * Classes implementing this interface represent a physical die to be used in games. 
+ */
+public interface Die {
+	public int roll();
 }

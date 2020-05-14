@@ -1,8 +1,10 @@
-package uk.gav.game;
+package uk.gav.game.impl;
 
 import java.util.List;
 
 import javax.inject.Singleton;
+
+import uk.gav.game.GameResultProcessor;
 
 @Singleton
 public class HighestRollResultProcessor implements GameResultProcessor {

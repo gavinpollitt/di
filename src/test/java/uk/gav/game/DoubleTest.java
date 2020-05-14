@@ -14,6 +14,8 @@ import com.google.inject.Key;
 
 import uk.gav.game.annotation.Dice;
 import uk.gav.game.annotation.Sides;
+import uk.gav.game.impl.DoubleUpResultProcessor;
+import uk.gav.game.impl.Game;
 
 /**
  * Unit test for simple App.

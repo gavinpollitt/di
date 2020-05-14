@@ -3,7 +3,7 @@ package uk.gav.game;
 import java.util.List;
 import java.util.Stack;
 
-public class DieControlled extends Die {
+public class DieControlled implements Die {
 	private final static Stack<Integer> rolls = new Stack<>();
 	private static List<Integer> content;
 
@@ -12,8 +12,7 @@ public class DieControlled extends Die {
 		content = c;
 	}
 	
-	public DieControlled(final int sides) {
-		super(sides);		
+	public DieControlled() {
 	}
 
 	@Override
