@@ -6,6 +6,12 @@ import javax.inject.Singleton;
 
 import uk.gav.game.GameResultProcessor;
 
+/**
+ * 
+ * @author regen
+ *
+ * Result processor instance based solely on the player with the highest total from their roles.
+ */
 @Singleton
 public class HighestRollResultProcessor implements GameResultProcessor {
 

@@ -20,12 +20,21 @@ public class Game {
 	
 	private final GameResultProcessor resultProcessor;
 	
+	/**
+	 * 
+	 * @param context The context of the game, i.e. the number of dice...etc
+	 * @param resultProcessor Interpreter of the results of this game to determine the result.
+	 */
 	@Inject
 	public Game(final GameContext context, final GameResultProcessor resultProcessor) {
 		this.context = context;
 		this.resultProcessor = resultProcessor;
 	}
 	
+	/**
+	 * Generic play of the game delegating specifics to context and result process
+	 * @return the textual result of the game
+	 */
 	public String play() {
 		System.out.println(this.context);
 		List<Die> dice = this.context.getDice();

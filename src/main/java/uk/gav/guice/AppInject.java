@@ -5,18 +5,10 @@ import com.google.inject.Injector;
 
 import uk.gav.game.impl.Game;
 
-public class App 
+public class AppInject 
 {
     public static void main( String[] args )
     {
-//    	DiceProvider provider = new DiceProvider(6);
-//    	GameContext context = new GameContext(provider, 3);
-//    	GameResultProcessor resultProcessor = new HighestRollResultProcessor();
-//    	
-//    	Game g = new Game(context, resultProcessor);
-//    	
-//    	System.out.println(g.play());
-    	
     	System.out.println("Game One");
         Injector injector = Guice.createInjector(new QuickGameModule());
         Game g = injector.getInstance(Game.class);

@@ -11,6 +11,13 @@ import uk.gav.game.DiceProvider;
 import uk.gav.game.Die;
 import uk.gav.game.annotation.Dice;
 
+/**
+ * 
+ * @author regen
+ *
+ * Singleton holder of the current game environment allow injections of the provider of the dice and
+ * the number of dice to use.
+ */
 @Singleton
 public final class GameContext {
 	
