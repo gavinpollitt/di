@@ -9,10 +9,12 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import uk.gav.game.annotation.Dice;
 import uk.gav.game.annotation.Sides;
+import uk.gav.game.impl.BasicDiceProvider;
 
 @Singleton
-public class TestDiceProvider implements DiceProvider {
+public class TestDiceProvider extends BasicDiceProvider {
 
 	private final static Map<Integer, List<Integer>> ROLLS = new HashMap<>();
 	
@@ -29,21 +31,14 @@ public class TestDiceProvider implements DiceProvider {
 		ROLLS.put(12, TWELVE_CONTENT);
 	}
 	
-	private final int sides;
-	
 	@Inject
-	public TestDiceProvider(final @Sides int sides) {
-		this.sides = sides;
+	public TestDiceProvider(@Sides final Integer sides, final @Dice int dice) {
+		super(sides, dice);
 		DieControlled.init(ROLLS.get(sides));
 	}
 
 	@Override
-	public Die get() {
+	protected Die createDie() {
 		return new DieControlled();
-	}
-
-	@Override
-	public int getSides() {
-		return this.sides;
 	}
 }

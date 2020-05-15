@@ -2,6 +2,8 @@ package uk.gav.game;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Set;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -11,11 +13,17 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
+import com.google.inject.multibindings.Multibinder;
+import com.google.inject.multibindings.OptionalBinder;
 
 import uk.gav.game.annotation.Dice;
 import uk.gav.game.annotation.Sides;
 import uk.gav.game.impl.Game;
 import uk.gav.game.impl.HighestRollResultProcessor;
+import uk.gav.game.stats.AverageThrowStat;
+import uk.gav.game.stats.FaceCountStat;
+import uk.gav.game.stats.StatProducer;
 
 /**
  * Unit test for simple App.
@@ -34,7 +42,10 @@ public class HighestTest
 			    bind(DiceProvider.class).to(TestDiceProvider.class);
 			    bind(GameResultProcessor.class).to(HighestRollResultProcessor.class);
 			    bind(Key.get(Integer.class, Dice.class)).toInstance(2);	 
-			    bind(Key.get(Integer.class, Sides.class)).toInstance(12);	    
+			    bind(Key.get(Integer.class, Sides.class)).toInstance(12);	
+			    
+			    Multibinder.newSetBinder(binder(), StatProducer.class).addBinding().to(FaceCountStat.class);
+
 			}
 			
 		};

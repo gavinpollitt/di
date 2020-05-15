@@ -1,5 +1,7 @@
 package uk.gav.game;
 
+import java.util.List;
+
 import com.google.inject.Provider;
 
 /**
@@ -8,6 +10,7 @@ import com.google.inject.Provider;
  *
  * Root interface of classes that act as Die factories.
  */
-public interface DiceProvider extends Provider<Die> {
+public interface DiceProvider extends Provider<List<Die>> {
 	public int getSides();
+	public int getDice();
 }
