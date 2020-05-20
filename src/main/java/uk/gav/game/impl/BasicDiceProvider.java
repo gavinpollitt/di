@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 import uk.gav.game.DiceProvider;
 import uk.gav.game.Die;
 import uk.gav.game.annotation.Dice;
 import uk.gav.game.annotation.Sides;
+import uk.gav.game.logging.Logger;
 
 /**
  * 
@@ -17,6 +20,7 @@ import uk.gav.game.annotation.Sides;
  *
  * 'Factory' for basic dice that provide the standard roles based on the number of sides.
  */
+@Singleton
 public class BasicDiceProvider implements DiceProvider {
 	
 	protected final int sides;
@@ -28,9 +32,10 @@ public class BasicDiceProvider implements DiceProvider {
 	 * @param sides The number of sides that the created dice will have
 	 */
 	@Inject
-	public BasicDiceProvider(@Sides final Integer sides, final @Dice int dice) {
+	public BasicDiceProvider(@Sides final Integer sides, final @Dice int dice, @Named("system") final Logger logger) {
 		this.dice = dice;
 		this.sides = sides;
+		logger.log(this.getClass() + "->" + this);
 	}
 
 	@Override

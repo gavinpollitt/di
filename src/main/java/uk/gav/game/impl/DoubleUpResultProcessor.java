@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import uk.gav.game.GameResultProcessor;
+import uk.gav.game.logging.Logger;
 
 /**
  * 
@@ -18,20 +21,22 @@ import uk.gav.game.GameResultProcessor;
 @Singleton
 public class DoubleUpResultProcessor implements GameResultProcessor {
 
-	public static void main(String[] args) {
-		List<Integer> check = Arrays.asList(1,2,3,4,2,5,5,2);
-		System.out.println(checkDoubles(check));
-		System.out.println(total(checkDoubles(check)));
-		System.out.println(reportDoubles(checkDoubles(check)));
-	}
+	@Inject
+	@Named("game")
+	private Logger gameLogger;
 
+
+	@Inject
+    public DoubleUpResultProcessor(@Named("system") final Logger logger) {
+		logger.log(this.getClass() + "->" + this);
+	}
 	/**
 	 * Based on the numbers rolled, the total result is calculated as:
 	 * 		Total for each distinct number rolled -> number of times rolled * face value * number of times rolled
 	 */
 	@Override
 	public String processResult(final List<Integer> player1, final List<Integer> player2) {
-		System.out.println("Doubles count double and so on");
+		gameLogger.log("Doubles count double and so on");
 		Map<Integer,Integer> p1Rolls = checkDoubles(player1);
 		Map<Integer,Integer> p2Rolls = checkDoubles(player2);
 		
@@ -109,4 +114,10 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 		return out;
 	}
 
+	public static void main(String[] args) {
+		List<Integer> check = Arrays.asList(1,2,3,4,2,5,5,2);
+		System.out.println(checkDoubles(check));
+		System.out.println(total(checkDoubles(check)));
+		System.out.println(reportDoubles(checkDoubles(check)));
+	}
 }

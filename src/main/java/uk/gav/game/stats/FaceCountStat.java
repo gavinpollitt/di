@@ -6,8 +6,20 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import uk.gav.game.logging.Logger;
+
+@Singleton
 public class FaceCountStat implements StatProducer {
 
+	@Inject
+	public FaceCountStat(@Named("system") final Logger logger) {
+		logger.log(this.getClass() + "->" + this);
+	}
+	
 	@Override
 	public String analyse(final int sides, final List<List<Integer>> gameDice) {
 		
@@ -30,7 +42,7 @@ public class FaceCountStat implements StatProducer {
 		
 		List<List<Integer>> lists = Arrays.asList(one,two,three);
 		
-		System.out.println(new FaceCountStat().analyse(6, lists));
+		System.out.println(new FaceCountStat(new Logger("TEST", true)).analyse(6, lists));
 	}
 
 }

@@ -3,8 +3,20 @@ package uk.gav.game.stats;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import uk.gav.game.logging.Logger;
+
+@Singleton
 public class AverageThrowStat implements StatProducer {
 
+	@Inject
+	public AverageThrowStat(@Named("system") final Logger logger) {
+		logger.log(this.getClass() + "->" + this);
+	}
+	
 	@Override
 	public String analyse(final int sides, final List<List<Integer>> gameDice) {
 		
@@ -22,6 +34,6 @@ public class AverageThrowStat implements StatProducer {
 		
 		List<List<Integer>> lists = Arrays.asList(one,two,three);
 		
-		System.out.println(new AverageThrowStat().analyse(6, lists));
+		System.out.println(new AverageThrowStat(new Logger("TEST", true)).analyse(6, lists));
 	}
 }

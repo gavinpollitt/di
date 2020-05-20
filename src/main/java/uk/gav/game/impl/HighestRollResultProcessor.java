@@ -2,9 +2,12 @@ package uk.gav.game.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import uk.gav.game.GameResultProcessor;
+import uk.gav.game.logging.Logger;
 
 /**
  * 
@@ -15,9 +18,18 @@ import uk.gav.game.GameResultProcessor;
 @Singleton
 public class HighestRollResultProcessor implements GameResultProcessor {
 
+	@Inject
+	@Named("game")
+	private Logger gameLogger;
+
+	@Inject
+	public HighestRollResultProcessor(@Named("system") final Logger logger) {
+		logger.log(this.getClass() + "->" + this);
+	}
+	
 	@Override
 	public String processResult(final List<Integer> player1, final List<Integer> player2) {
-		System.out.println("Highest Score Wins");
+		gameLogger.log("Highest Score Wins");
 		int p1Score = player1.stream().reduce(0, (a, i) -> a + i);
 		int p2Score = player2.stream().reduce(0, (a, i) -> a + i);
 		

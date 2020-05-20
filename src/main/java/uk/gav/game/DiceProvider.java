@@ -2,7 +2,7 @@ package uk.gav.game;
 
 import java.util.List;
 
-import com.google.inject.Provider;
+import javax.inject.Provider;
 
 /**
  * 
