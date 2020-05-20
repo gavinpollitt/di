@@ -1,4 +1,4 @@
-package uk.gav.game;
+package uk.gav.nondiTWO;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,16 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import uk.gav.game.annotation.Dice;
-import uk.gav.game.annotation.Sides;
-import uk.gav.game.impl.BasicDiceProvider;
-import uk.gav.game.logging.Logger;
-
-@Singleton
-public class TestDiceProvider extends BasicDiceProvider {
+public class TestDiceFactory extends BasicDiceFactory {
 
 	private final static Map<Integer, List<Integer>> ROLLS = new HashMap<>();
 	
@@ -32,9 +23,8 @@ public class TestDiceProvider extends BasicDiceProvider {
 		ROLLS.put(12, TWELVE_CONTENT);
 	}
 	
-	@Inject
-	public TestDiceProvider(@Sides final Integer sides, final @Dice int dice) {
-		super(sides, dice, new Logger("TEST",false));
+	public TestDiceFactory(final Integer sides, final int dice) {
+		super(sides, dice);
 		DieControlled.init(ROLLS.get(sides));
 	}
 
