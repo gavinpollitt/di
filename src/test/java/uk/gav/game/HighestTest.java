@@ -21,6 +21,7 @@ import uk.gav.game.impl.HighestRollResultProcessor;
 import uk.gav.game.logging.Logger;
 import uk.gav.game.stats.FaceCountStat;
 import uk.gav.game.stats.StatProducer;
+import uk.gav.guice.LadsPlayerModule;
 
 /**
  * Unit test for simple App.
@@ -52,33 +53,30 @@ public class HighestTest
 			
 		};
 		
-        injector = Guice.createInjector(module);		
+        injector = Guice.createInjector(module, new LadsPlayerModule());		
 	}
 	
 	@Test   
 	public void play1() {
-		final String res = "Player 1 with 19 beats player 2 with 8";
+		final String res = "Bob with 19 beats Todd with 8";
         Game g = injector.getInstance(Game.class);
         String result = g.play();
-        //System.out.println(result);
         assertTrue("Output should be '" + res + "', but was " + result, result.equals(res));
 	}
 	
 	@Test
 	public void play2() {
-		final String res = "Player 2 with 23 beats player 1 with 8";
+		String res = "Todd with 23 beats Bob with 8";
         Game g = injector.getInstance(Game.class);
         String result = g.play();
-        //System.out.println(result);
         assertTrue("Output should be '" + res + "', but was " + result, result.equals(res));
-	}
-	
-	@Test
-	public void play3() {
-		final String res = "Both players rolled: 19. It's a draw";
-        Game g = injector.getInstance(Game.class);
-        String result = g.play();
-        //System.out.println(result);
+        
+        result = g.play();
+        res = "Both players rolled: 19. It's a draw";
         assertTrue("Output should be '" + res + "', but was " + result, result.equals(res));
-	}
+        
+        result = g.getGameScores();
+        res = "Bob won 0 gamesTodd won 1 game";
+        assertTrue("Output should be '" + res + "', but was " + result, result.replaceAll("\\n", "").equals(res));
+	}	
 }

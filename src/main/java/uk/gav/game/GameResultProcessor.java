@@ -2,6 +2,8 @@ package uk.gav.game;
 
 import java.util.List;
 
+import uk.gav.game.impl.Players;
+
 /**
  * 
  * @author regen
@@ -12,10 +14,10 @@ import java.util.List;
 public interface GameResultProcessor {
 
 	/**
-	 * 
+	 * @param players Holder for the player names
 	 * @param player1 A list of integer values containing the scores rolled by player 1. 
 	 * @param player2 A list of integer values containing the scores rolled by player 1. 
 	 * @return The result details in the required readable format
 	 */
-	public String processResult(final List<Integer> player1, final List<Integer> player2);
+	public String processResult(final Players players, final List<Integer> player1, final List<Integer> player2);
 }

@@ -35,7 +35,7 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 	 * 		Total for each distinct number rolled -> number of times rolled * face value * number of times rolled
 	 */
 	@Override
-	public String processResult(final List<Integer> player1, final List<Integer> player2) {
+	public String processResult(final Players players, final List<Integer> player1, final List<Integer> player2) {
 		gameLogger.log("Doubles count double and so on");
 		Map<Integer,Integer> p1Rolls = checkDoubles(player1);
 		Map<Integer,Integer> p2Rolls = checkDoubles(player2);
@@ -47,10 +47,12 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 		int p2Score = total(p2Rolls);
 		
 		if (p1Score > p2Score) {
-			return "Player 1 " + p1Db + " giving score " + p1Score + " beats player 2 who " + p2Db + " giving score "+ p2Score;
+			players.won(1);
+			return players.getPlayerName(1) + " " + p1Db + " giving score " + p1Score + " beats " + players.getPlayerName(2)  + " who " + p2Db + " giving score "+ p2Score;
 		}
 		else if (p2Score > p1Score) {
-			return "Player 2 " + p2Db + " giving score " + p2Score + " beats player 1 who " + p1Db + " giving score "+ p1Score;
+			players.won(2);
+			return players.getPlayerName(2) + " " + p2Db + " giving score " + p2Score + " beats " + players.getPlayerName(1)  + " who " + p1Db + " giving score "+ p1Score;
 		}
 		else {
 			return "Both players rolled: " + p1Score + ". It's a draw";			

@@ -15,6 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.9</maven.compiler.target>
 		<maven.compiler.source>1.9</maven.compiler.source>
+		<jvm.options>--add-opens java.base/java.lang=ALL-UNNAMED</jvm.options>
 	</properties>
 
 	<dependencies>
@@ -40,4 +41,17 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<argLine>${jvm.options}</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

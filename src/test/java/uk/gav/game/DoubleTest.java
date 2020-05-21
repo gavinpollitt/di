@@ -21,6 +21,7 @@ import uk.gav.game.impl.Game;
 import uk.gav.game.logging.Logger;
 import uk.gav.game.stats.AverageThrowStat;
 import uk.gav.game.stats.StatProducer;
+import uk.gav.guice.LadsPlayerModule;
 
 /**
  * Unit test for simple App.
@@ -51,12 +52,12 @@ public class DoubleTest
 			
 		};
 		
-        injector = Guice.createInjector(module);		
+	    injector = Guice.createInjector(module, new LadsPlayerModule());		
 	}
 	
 	@Test   
 	public void play1() {
-		final String res = "Player 1 rolled no doubles giving score 12 beats player 2 who rolled 2X1 = 4 giving score 10";
+		final String res = "Bob rolled no doubles giving score 12 beats Todd who rolled 2X1 = 4 giving score 10";
         Game g = injector.getInstance(Game.class);
         String result = g.play();
         //System.out.println(result);
@@ -65,7 +66,7 @@ public class DoubleTest
 	
 	@Test
 	public void play2() {
-		final String res = "Player 2 rolled 3X2 = 18 giving score 18 beats player 1 who rolled no doubles giving score 8";
+		final String res = "Todd rolled 3X2 = 18 giving score 18 beats Bob who rolled no doubles giving score 8";
         Game g = injector.getInstance(Game.class);
         String result = g.play();
         //System.out.println(result);

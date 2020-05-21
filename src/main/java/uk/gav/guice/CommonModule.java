@@ -19,7 +19,7 @@ public class CommonModule extends AbstractModule {
 	    bind(DiceProvider.class).to(BasicDiceProvider.class);
 		
 		this.bindLogger("Game", false);
-		this.bindLogger("System", false);
+		this.bindLogger("System", true);
 	    this.bindLogger("Statistic", false);
 	    
 	    Multibinder.newSetBinder(binder(), StatProducer.class).addBinding().to(AverageThrowStat.class);

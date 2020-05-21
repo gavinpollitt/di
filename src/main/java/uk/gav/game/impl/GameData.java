@@ -16,7 +16,7 @@ import uk.gav.game.logging.Logger;
  * Singleton holder of the current game environment allow injections of the provider of the dice and
  * the number of dice to use.
  */
-public final class GameContext {
+public final class GameData {
 	
 	private final DiceProvider provider;
 	
@@ -24,12 +24,15 @@ public final class GameContext {
 	
 	private Logger logger;
 	
+	private final Players players;
+	
 	@Inject
-	public GameContext(final DiceProvider provider, @Named("system") Logger logger) {
+	public GameData(final DiceProvider provider, final Players players, @Named("system") Logger logger) {
 		this.provider = provider;
 		this.logger = logger;
 		this.dice = provider.get();
-		this.logger.log(this.getClass() + "->" + this.hashCode());
+		this.players = players;
+		this.logger.log(this.getClass() + "->" + super.toString());
 	}
 	
 	public List<Die> getDice() {
@@ -43,6 +46,10 @@ public final class GameContext {
 	
 	public int getSides() {
 		return this.provider.getSides();
+	}
+
+	public Players getPlayers() {
+		return players;
 	}
 	
 }

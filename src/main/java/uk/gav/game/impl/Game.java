@@ -20,7 +20,7 @@ import uk.gav.game.stats.StatProducer;
  */
 public class Game {
 	
-	private final GameContext context;
+	private final GameData context;
 	
 	private final GameResultProcessor resultProcessor;
 	
@@ -42,7 +42,7 @@ public class Game {
 	 * @param resultProcessor Interpreter of the results of this game to determine the result.
 	 */
 	@Inject
-	public Game(final GameContext context, 
+	public Game(final GameData context, 
 				final GameResultProcessor resultProcessor, 
 				final Set<StatProducer> statProducers,
 				@Named("system") final Logger systemLogger ) {
@@ -68,7 +68,10 @@ public class Game {
 			this.statProducers.stream().map(p -> p.analyse(this.context.getSides(), StatProducer.listUp(p1Result, p2Result))).forEach(statLogger::log);
 		}
 		
-		return this.resultProcessor.processResult(p1Result, p2Result);
+		return this.resultProcessor.processResult(this.context.getPlayers(), p1Result, p2Result);
 	}
 
+	public String getGameScores() {
+		return this.context.getPlayers().toString();
+	}
 }
