@@ -66,7 +66,7 @@ public class Composite {
 		
 		public Cuboid(final int l, final int b, final int d) {
 			this.size = l * b * d;
-			this.cost = Math.round(this.size * 1.5 * 100)/100;
+			this.cost = Math.round(this.size * 1.5 * 100.0)/100.0;
 		}
 		
 		@Override
@@ -93,7 +93,7 @@ public class Composite {
 		
 		public Cone(final int r, final int h) {
 			this.size = Math.round(Math.PI * r * r * h / 3); 
-			this.cost = Math.round(this.size * 3 * 100)/100;
+			this.cost = Math.round(this.size * 3 * 100.0)/100.0;
 		}
 		
 		@Override
