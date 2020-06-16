@@ -1,4 +1,4 @@
-package uk.gav.sp.create;
+package uk.gav.sp.create.s;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,39 +7,6 @@ import java.util.Map;
 
 public class Singleton {
 
-	public static void main(String[] args) {
-		System.out.println("Client code 1-->");
-		Singleton s = new Singleton();
-		s.clientCode1();
-		System.out.println("-------------------------------------");
-		
-		System.out.println("Client code 2-->");
-		s = new Singleton();
-		s.clientCode2();
-		System.out.println("-------------------------------------");
-	}
-	
-	public void clientCode1() {
-		ShapeManager.getInstance().addShape(new Square(5, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Square(10, Colour.RED));
-		ShapeManager.getInstance().addShape(new Circle(2, Colour.RED));
-		ShapeManager.getInstance().addShape(new Square(12, Colour.RED));
-		ShapeManager.getInstance().addShape(new Square(18, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Circle(5, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Circle(5, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Square(25, Colour.RED));
-		
-		System.out.println(ShapeManager.getInstance());
-	}
-	
-	public void clientCode2() {
-		ShapeManager.getInstance().addShape(new Circle(10, Colour.RED));
-		ShapeManager.getInstance().addShape(new Circle(25, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Square(6, Colour.BLUE));
-		ShapeManager.getInstance().addShape(new Circle(1, Colour.BLUE));
-		
-		System.out.println(ShapeManager.getInstance());
-	}
 
 	public static class ShapeManager {
 		private static ShapeManager _instance = new ShapeManager();
@@ -114,7 +81,7 @@ public class Singleton {
 		}		
 	}
 	
-	private static enum Colour {
+	public static enum Colour {
 		RED,
 		BLUE;
 	}

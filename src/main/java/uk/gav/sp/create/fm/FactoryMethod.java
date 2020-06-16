@@ -1,21 +1,7 @@
-package uk.gav.sp.create;
+package uk.gav.sp.create.fm;
 
 public class FactoryMethod {
 	
-	public static void main(String[] args) {
-		FactoryMethod fm = new FactoryMethod();
-		fm.clientCode();
-	}
-	
-	public void clientCode() {
-		System.out.println("Cube printing");
-		ShapePrinter p = new CubePrinter();
-		p.printShape();
-		System.out.println("\nSphere printing");
-		p = new SpherePrinter();
-		p.printShape();		
-	}
-
 	public abstract static class ShapePrinter {
 		public abstract Shape createShape();
 		

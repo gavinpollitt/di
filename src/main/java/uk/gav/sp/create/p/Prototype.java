@@ -1,42 +1,7 @@
-package uk.gav.sp.create;
-
-import java.util.ArrayList;
-import java.util.List;
+package uk.gav.sp.create.p;
 
 public class Prototype {
-	
-	public static void main(String[] args) {
-		Prototype p = new Prototype();
-		p.clientCode();
-	}
-	
-	public void clientCode() {
-		List<ThreeDShape> shapes = new ArrayList<>();
 		
-		System.out.println("Create the prototype objects");
-		ThreeDShape pCuboid = new Cuboid(5, 2, 10, Colour.BLUE);
-		ThreeDShape pCone = new Cone(5,10, Colour.RED);
-		shapes.add(pCuboid);
-		shapes.add(pCone);
-		
-		System.out.println("Add cuboid clones to the list");
-		shapes.add(pCuboid.clone());
-		shapes.add(pCuboid.clone());
-		shapes.add(pCuboid.clone());
-		shapes.add(pCuboid.clone());
-
-		System.out.println("Add cone clones to the list");
-		shapes.add(pCone.clone());
-		shapes.add(pCone.clone());
-
-		System.out.println("The total size of our shapes is:");
-		Long total = shapes.stream().map(s -> s.getSize()).reduce(0l, (v,a) -> v+a);
-		System.out.println(total + " units cubed");
-		
-		
-		
-	}
-	
 	public static interface ThreeDShape {
 		public long getSize();
 		public Colour getColour();
@@ -119,7 +84,7 @@ public class Prototype {
 		
 	}
 	
-	private static enum Colour {
+	protected static enum Colour {
 		RED,
 		BLUE;
 	}

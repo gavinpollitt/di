@@ -1,41 +1,7 @@
-package uk.gav.sp.create;
+package uk.gav.sp.create.b;
 
 public class Builder {
 	
-	public static void main(String[] args) {
-		Builder b = new Builder();
-		b.clientCode();
-	}
-	
-	public void clientCode() {
-		ShapeBuilder builder = new ShapeBuilder(10,50);
-		RectangleShape ss = builder.colour(Colour.BLUE).build();
-		System.out.println(ss);
-		
-		System.out.println("-----------");
-		
-		builder = new ShapeBuilder(5,10);
-		ss = builder.depth(20).rotation(90d).colour(Colour.RED).material(Material.CARDBOARD).build();
-		System.out.println(ss);
-		
-		System.out.println("-----------");
-		
-		builder = new ShapeBuilder(0,10);		
-		try {
-			ss = builder.build();
-		}
-		catch (Exception e) {
-			System.out.println("Exception found:" + e);
-		}
-		
-		builder = new ShapeBuilder(5,100);		
-		try {
-			ss = builder.rotation(45).material(Material.METAL).build();
-		}
-		catch (Exception e) {
-			System.out.println("Exception found:" + e);
-		}
-	}
 	
 	public static class RectangleShape {
 		private Integer l;
@@ -52,6 +18,7 @@ public class Builder {
 		//private Shape(final int l, final int b,final Colour colour, final double rotation)
 		//...etc
 
+		// private to ensure that only the ShapeBuilder can create.
 		private RectangleShape(final ShapeBuilder builder) {
 			this.l = builder.l;
 			this.b = builder.b;
@@ -151,13 +118,13 @@ public class Builder {
 		}
 	}
 	
-	private static enum Colour {
+	protected static enum Colour {
 		RED,
 		BLUE,
 		TRANSPARENT;
 	}
 	
-	private static enum Material {
+	protected static enum Material {
 		METAL,
 		PLASTIC,
 		CARDBOARD;
