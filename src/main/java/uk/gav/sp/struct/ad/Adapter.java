@@ -1,31 +1,6 @@
-package uk.gav.sp.struct;
+package uk.gav.sp.struct.ad;
 
 public class Adapter {
-
-	public static void main(String[] args) {
-		Adapter a = new Adapter();
-		a.clientCode1();
-		a.clientCode2();
-	}
-	
-	public void clientCode1() {
-		CircularHole hole = new CircularHole(5);
-		
-		hole.checkFit(new Circle(4));
-		hole.checkFit(new Sphere(5));
-		hole.checkFit(new Circle(6));
-	}
-	
-	public void clientCode2() {
-		CircularHole hole = new CircularHole(10);
-		
-		hole.checkFit(new Circle(5));
-		hole.checkFit(new Sphere(6));
-		hole.checkFit(new Circle(7));
-		hole.checkFit(new SquareAdapter(new Square(14)));
-		hole.checkFit(new SquareAdapter(new Square(15)));
-	}
-
 	public static class CircularHole {
 		private double radius;
 		
@@ -108,10 +83,10 @@ public class Adapter {
 		}		
 	}
 	
-	public static class SquareAdapter implements CircularShape {
+	public static class SquareToCircleAdapter implements CircularShape {
 		private Square square;
 
-		public SquareAdapter(final Square s) {
+		public SquareToCircleAdapter(final Square s) {
 			this.square = s;
 		}
 		

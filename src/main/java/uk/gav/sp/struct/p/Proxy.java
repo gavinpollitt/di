@@ -1,4 +1,4 @@
-package uk.gav.sp.struct;
+package uk.gav.sp.struct.p;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,39 +7,6 @@ import java.util.Map;
 
 public class Proxy {
 
-	public static void main(String[] args) {
-		Proxy p = new Proxy();
-		p.clientCode();
-	}
-	
-	public void clientCode() {
-		String user = "Rita";
-
-		ShapePrinter sp = ShapePrinterServer.getInstance();
-		System.out.println("ShapePrinter in use--> " + sp);
-
-		sp.addToQueue(new PrintJob(new Rectangle(5, 5), user));
-		sp.addToQueue(new PrintJob(new Rectangle(2, 1), user));
-		sp.addToQueue(new PrintJob(new Rectangle(4, 12), user));
-
-		user = "Sue";
-		sp.addToQueue(new PrintJob(new Circle(7), user));
-		sp.addToQueue(new PrintJob(new Circle(4), user));
-
-		sp.print();
-
-		sp = ShapePrinterServer.getInstance();
-		System.out.println("ShapePrinter in use--> " + sp);
-		
-		user = "Bob";
-		sp.addToQueue(new PrintJob(new Rectangle(10, 10), user));
-		sp.addToQueue(new PrintJob(new Rectangle(12, 1), user));
-		
-		sp.print();
-		
-		sp.addToQueue(new PrintJob(new Circle(4), user));
-
-	}
 
 	public static final class Environment {
 		private static Map<String, String> ROLES = new HashMap<>();
@@ -60,6 +27,10 @@ public class Proxy {
 		public void addToQueue(final PrintJob pj);
 
 		public void print();
+		
+		public static ShapePrinter getInstance() {
+			return ShapePrinterServer.getInstance();
+		}
 	}
 
 	public static final class PrintJob {
@@ -81,16 +52,18 @@ public class Proxy {
 
 	}
 
-	public static final class ShapePrinterServer implements ShapePrinter {
+	private static final class ShapePrinterServer implements ShapePrinter {
 		private static ShapePrinterServer _instance = new ShapePrinterServer();
 
 		private List<PrintJob> serverQueue = new ArrayList<>();
 		private boolean init = false;
 
-		public final static ShapePrinter getInstance() {
+		private final static ShapePrinter getInstance() {
 			return new ShapePrinterProxy(_instance);
 		}
 
+		private ShapePrinterServer() {}
+		
 		@Override
 		public void addToQueue(PrintJob pj) {
 			System.out.println("ShapePrinter to addToQueue--> " + this);
@@ -128,7 +101,7 @@ public class Proxy {
 
 		private List<PrintJob> localQueue = new ArrayList<>();
 
-		public ShapePrinterProxy(final ShapePrinterServer server) {
+		private ShapePrinterProxy(final ShapePrinterServer server) {
 			this.truePrinter = server;
 			proxyId++;
 		}

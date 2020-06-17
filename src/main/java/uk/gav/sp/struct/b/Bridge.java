@@ -1,37 +1,20 @@
-package uk.gav.sp.struct;
+package uk.gav.sp.struct.b;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
 	
-	public static void main(String[] args) {
-		Bridge b = new Bridge();
-		ShapePacker sp = new BirthdayShapePacker(new BasicPackage());
-		b.clientCode1(sp);
+	public static interface ThreeDShape {
+		public double getSize();
+		public Colour getColour();
+	}
 		
-		sp = new AnniversaryShapePacker(new PremierPackage());
-		b.clientCode2(sp);
-	}
-
-	public void clientCode1(final ShapePacker packer) {
-		System.out.println("Creating our birthday pressie");
-		packer.addShape(new Cuboid(5, 4, 3, Colour.BLUE));
-		packer.addShape(new Cuboid(2, 2, 2, Colour.GOLD));
-		System.out.println("Cost with just my cubes:" + packer.getCost());
-		packer.addShape(new Cone(3, 10, Colour.TRANSPARENT));
-		packer.addShape(new Sphere(3, Colour.TRANSPARENT));
-		packer.packAndSend();		
-	}
-	
-	public void clientCode2(final ShapePacker packer) {
-		System.out.println("Creating our anniversary pressie");
-		packer.addShape(new Cuboid(5, 4, 3, Colour.GOLD));
-		packer.addShape(new Cuboid(2, 2, 2, Colour.GOLD));
-		System.out.println("Cost with just my cubes:" + packer.getCost());
-		packer.addShape(new Cone(3, 10, Colour.RED));
-		packer.addShape(new Sphere(3, Colour.RED));
-		packer.packAndSend();		
+	public static interface ShapePackage {
+		public double getCost();
+		public double getWeight();
+		public void addShape(ThreeDShape shape);
+		public String getDescription();
 	}
 	
 	public static abstract class ShapePacker {
@@ -126,13 +109,6 @@ public class Bridge {
 		
 	}
 	
-	public static interface ShapePackage {
-		public double getCost();
-		public double getWeight();
-		public void addShape(ThreeDShape shape);
-		public String getDescription();
-	}
-	
 	public static class BasicPackage implements ShapePackage {
 		private final Material material = Material.PLASTIC;
 		private final int margin = 2;
@@ -195,11 +171,6 @@ public class Bridge {
 		}		
 	}
 	
-	public static interface ThreeDShape {
-		public double getSize();
-		public Colour getColour();
-	}
-		
 	public static class Cuboid implements ThreeDShape {
 
 		private final long size;

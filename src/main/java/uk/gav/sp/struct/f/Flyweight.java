@@ -1,29 +1,10 @@
-package uk.gav.sp.struct;
+package uk.gav.sp.struct.f;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Flyweight {
 
-	public static void main(String[] args) {
-		Flyweight f = new Flyweight();
-		f.clientCode();
-	}
-	
-	public void clientCode() {
-		ColouredRectangleFactory factory = ColouredRectangleFactory.getInstance();
-		
-		factory.create(10, 10, Colour.RED, 45);
-		factory.create(20, 10, Colour.BLUE, 0);
-		factory.create(10, 10, Colour.BLUE, 90);
-		factory.create(10, 10, Colour.TRANSPARENT, 45);
-		factory.create(4, 6, Colour.BLUE, 0);
-		factory.create(6, 4, Colour.RED, 75);
-		factory.create(4, 6, Colour.TRANSPARENT, 0);
-		factory.create(20, 10, Colour.RED, 10);
-		factory.create(4, 6, Colour.BLUE, 0);
-	}
-	
 	public static class ColouredRectangleFactory {
 		private static ColouredRectangleFactory _instance = new ColouredRectangleFactory();
 		
@@ -54,11 +35,11 @@ public class Flyweight {
 	}
 	
 	public static interface ShapeSize {
-		public abstract double getSize();
-		public abstract String getDescription();
+		public double getSize();
+		public String getDescription();
 	}
 	
-	public static class RectangleShapeSize implements ShapeSize {
+	private static class RectangleShapeSize implements ShapeSize {
 		private final int l, b;
 		private final double size;
 		
@@ -66,7 +47,7 @@ public class Flyweight {
 			return name + "*" + l + "*" + b;
 		}
 		
-		public RectangleShapeSize(final int l, final int b) {
+		private RectangleShapeSize(final int l, final int b) {
 			this.l = l;
 			this.b = b;
 			System.out.println("Calculating area of rectangle - VERY CPU intensive!");
@@ -91,7 +72,7 @@ public class Flyweight {
 		private int    		rotation;
 		private ShapeSize	shapeSize;
 		
-		public Rectangle(final Colour colour, final int rotation, final ShapeSize shapeSize) {
+		private Rectangle(final Colour colour, final int rotation, final ShapeSize shapeSize) {
 			this.colour = colour;
 			this.rotation = rotation;
 			this.shapeSize = shapeSize;
@@ -119,7 +100,7 @@ public class Flyweight {
 		}
 	}
 	
-	private static enum Colour {
+	protected static enum Colour {
 		RED,
 		BLUE,
 		TRANSPARENT;
