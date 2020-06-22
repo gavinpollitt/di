@@ -36,7 +36,7 @@ public class DoubleUpResultProcessor implements GameResultProcessor {
 	 */
 	@Override
 	public String processResult(final Players players, final List<Integer> player1, final List<Integer> player2) {
-		gameLogger.log("Doubles count double and so on");
+		if (gameLogger != null) gameLogger.log("Doubles count double and so on");
 		Map<Integer,Integer> p1Rolls = checkDoubles(player1);
 		Map<Integer,Integer> p2Rolls = checkDoubles(player2);
 		

@@ -14,6 +14,10 @@ public class GameFOUR {
 	public static void main(String[] args) {		
 		List<String> pList = Arrays.asList("Bob","Todd");
 		Players players = new Players(new HashSet<>(pList));
+		new GameFOUR().play(players);
+	}
+	
+	public void play(final Players players) {
 		
 		DiceFactory df = new BasicDiceFactory(6, 4);
 		GameResultProcessor rp = new HighestRollResultProcessor();

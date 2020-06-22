@@ -29,7 +29,7 @@ public class HighestRollResultProcessor implements GameResultProcessor {
 	
 	@Override
 	public String processResult(final Players players, final List<Integer> player1, final List<Integer> player2) {
-		gameLogger.log("Highest Score Wins");
+		if (gameLogger != null) gameLogger.log("Highest Score Wins");
 		int p1Score = player1.stream().reduce(0, (a, i) -> a + i);
 		int p2Score = player2.stream().reduce(0, (a, i) -> a + i);
 		

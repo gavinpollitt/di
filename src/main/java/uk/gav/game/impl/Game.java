@@ -58,7 +58,7 @@ public class Game {
 	 * @return the textual result of the game
 	 */
 	public String play() {
-		this.gameLogger.log(this.context.toString());
+		if (gameLogger != null) this.gameLogger.log(this.context.toString());
 		List<Die> dice = this.context.getDice();
 		
 		List<Integer> p1Result = dice.stream().map(Die::roll).collect(Collectors.toList());
