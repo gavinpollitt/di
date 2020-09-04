@@ -30,11 +30,13 @@ public class PClient extends ClientApplication {
 		ShapePrinter sp = ShapePrinter.getInstance();
 		System.out.println("ShapePrinter in use--> " + sp);
 
+		System.out.println(user+"'s jobs");
 		sp.addToQueue(new PrintJob(new Rectangle(5, 5), user));
 		sp.addToQueue(new PrintJob(new Rectangle(2, 1), user));
 		sp.addToQueue(new PrintJob(new Rectangle(4, 12), user));
 
 		user = "Sue";
+		System.out.println(user+"'s jobs");
 		sp.addToQueue(new PrintJob(new Circle(7), user));
 		sp.addToQueue(new PrintJob(new Circle(4), user));
 
@@ -44,11 +46,13 @@ public class PClient extends ClientApplication {
 		System.out.println("ShapePrinter in use--> " + sp);
 		
 		user = "Bob";
+		System.out.println(user+"'s jobs");
 		sp.addToQueue(new PrintJob(new Rectangle(10, 10), user));
 		sp.addToQueue(new PrintJob(new Rectangle(12, 1), user));
 		
 		sp.print();
 		
+		System.out.println(user+"'s jobs");
 		sp.addToQueue(new PrintJob(new Circle(4), user));
 
 	}

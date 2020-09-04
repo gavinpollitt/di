@@ -60,15 +60,7 @@ public class CClient extends ClientApplication {
 		b4.addShape(cn4);
 		b4.addShape(cn5);
 		b4.addShape(cb5);
-		
-		System.out.println("Main box 1 contains " + b3);
-		System.out.println("Total size: " + b3.getSize());
-		System.out.println("Total cost: " + b3.getCost());
-		System.out.println();
-		System.out.println("Main box 2 contains " + b4);
-		System.out.println("Total size: " + b4.getSize());
-		System.out.println("Total cost: " + b4.getCost());
-		
+				
 		System.out.println("\nCreate a set of shapes");
 		List<ThreeDShape> shapes = Arrays.asList(new ThreeDShape[] {cb1,cb2,cb3,cb4,cb5,cn1,cn2,cn3,cn4,cn5,b1,b2,b3,b4});
 		clientShapeTotaller(shapes);

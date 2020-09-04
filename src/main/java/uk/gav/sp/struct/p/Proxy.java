@@ -66,20 +66,20 @@ public class Proxy {
 		
 		@Override
 		public void addToQueue(PrintJob pj) {
-			System.out.println("ShapePrinter to addToQueue--> " + this);
+			System.out.println("SHAPEPRINTERSERVER ShapePrinter to addToQueue--> " + this);
 			this.serverQueue.add(pj);
 		}
 
 		@Override
 		public void print() {
-			System.out.println("ShapePrinter to print--> " + this);
+			System.out.println("SHAPEPRINTERSERVER ShapePrinter to print--> " + this);
 			this.init();
 			serverQueue.stream().forEach(this::printEntry);
 			serverQueue.clear();
 		}
 
 		private void printEntry(final PrintJob pj) {
-			System.out.print("Print Job -->");
+			System.out.print("SHAPEPRINTERSERVER Print Job -->");
 			System.out.println("User: " + pj.getUser() + ", Shape: " + pj.getShape().getDescription());
 		}
 
@@ -108,7 +108,7 @@ public class Proxy {
 
 		@Override
 		public void addToQueue(final PrintJob pj) {
-			System.out.println("ShapePrinter to addToQueue--> " + this);
+			System.out.println("ShapePrinterProxy to addToQueue--> " + this);
 			if (Environment.hasRole(pj.getUser(), pj.getShape())) {
 				this.localQueue.add(pj);
 			} else {
@@ -119,7 +119,7 @@ public class Proxy {
 
 		@Override
 		public void print() {
-			System.out.println("ShapePrinter to print--> " + this);
+			System.out.println("ShapePrinterProxy to print--> " + this);
 			localQueue.stream().forEach(truePrinter::addToQueue);
 			localQueue.clear();
 			this.truePrinter.print();

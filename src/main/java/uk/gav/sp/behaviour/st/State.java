@@ -34,19 +34,19 @@ public class State {
 		}
 		
 		public String addShape(final Shape s)  {
-			return checkComplete(this.stateOutput(state.add(s)));
+			return "add() --> " + checkComplete(this.stateOutput(state.add(s)));
 		}
 		
 		public String popShape()  {
-			return checkComplete(this.stateOutput(state.pop()));
+			return "pop() --> " + checkComplete(this.stateOutput(state.pop()));
 		}
 
 		public String sealPackage() {
-			return checkComplete(this.stateOutput(state.seal()));
+			return "seal() --> " + checkComplete(this.stateOutput(state.seal()));
 		}
 		
 		public String wrapPackage(final Wrapping w) {
-			return checkComplete(this.stateOutput(state.wrap(w)));
+			return "wrap() --> " + checkComplete(this.stateOutput(state.wrap(w)));
 		}
 		
 		public boolean isComplete() {
